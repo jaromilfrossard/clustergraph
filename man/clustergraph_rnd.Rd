@@ -17,6 +17,8 @@ clustergraph_rnd(formula, data, signal, method, threshold, np, P, graph,
 
 \item{method}{a charcter string specifying the method}
 
+\item{threshold}{see \code{clusterlm}.}
+
 \item{P}{a Pmat object from \code{permuco}}
 
 \item{graph}{a igraph object of an undirected graph specifing the neighborgoods relationship between the nodes}

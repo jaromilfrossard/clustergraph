@@ -53,6 +53,6 @@ compute_maris_oostenveld_array = function(distribution, threshold,aggr_FUN, grap
   df$cluster_id[is.na(df$cluster_id)]=0
   df$mass_statistic[is.na(df$mass_statistic)]=0
 
-  return(list(graph = graph, data = df,cluster = cc, distribution = mass_distribution))
+  return(list(graph = graph, data = df,cluster = cc, distribution = mass_distribution,threshold = threshold))
 }
 

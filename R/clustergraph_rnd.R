@@ -130,6 +130,8 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
 
     dimnames(signal) = dnames
 
+    table = clustergraph_table(multiple_comparison)
+
 
 
     out=list()
@@ -139,6 +141,7 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
     out$link = link
     out$P = P
     out$multiple_comparison = multiple_comparison
+    out$table = table
     out$data=mf
     out$method = method
     out$multcomp = multcomp

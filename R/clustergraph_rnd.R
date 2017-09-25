@@ -12,12 +12,15 @@
 #'@param return_distribution If set to true return the null distribution by permutation.
 #'@param coding_sum logical. If \code{TRUE}, set the coding of the design to sum, if \code{FALSE}, take the coding define in the dataframe.
 #'@param threshold see \code{clusterlm}.
+#'@param np a scalar indicating the number of permutations. Will be overwrite by \code{P} if specified.
+#'@param aggr_FUN the function to aggregate individual statistics into cluster mass.
+#'@param effect a number indicating the effect to test. Refer to the \code{assign} attribute of the \code{model.matrix} object. If \code{NULL} it will test all the effects.
 #'@param ... further arguments
 #'@importFrom stats update as.formula contr.sum model.frame contrasts<- model.matrix qf
 #'@import permuco
 #'@export
 clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, graph, effect = NULL, coding_sum = T,
-                               aggr_FUN, multcomp = "maris_oostenveld", return_distribution,...){
+                               aggr_FUN =sum, multcomp = "maris_oostenveld", return_distribution,...){
 
     if(is.null(method)){method = "Rd_kheradPajouh_renaud"}
 
@@ -131,6 +134,8 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
     dimnames(signal) = dnames
 
 
+    table = clustergraph_table(multiple_comparison)
+
 
     out=list()
     out$y = signal
@@ -139,6 +144,7 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
     out$link = link
     out$P = P
     out$multiple_comparison = multiple_comparison
+    out$table = table
     out$data=mf
     out$method = method
     out$multcomp = multcomp

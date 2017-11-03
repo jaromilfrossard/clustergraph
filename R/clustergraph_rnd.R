@@ -68,7 +68,7 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
       col})))
 
     ##response
-    mf <- eval(mf, parent.frame(n=2))
+    mf <- eval(mf, parent.frame(n=1))
     dim_y = dim(signal)
     dnames = dimnames(signal)
     dim(signal) = c(dim_y[1],dim_y[2]*dim_y[3])

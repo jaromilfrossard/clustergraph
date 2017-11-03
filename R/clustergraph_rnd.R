@@ -132,6 +132,7 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
 
 
     dimnames(signal) = dnames
+    attr(mf,"terms")=NULL
 
 
     table = clustergraph_table(multiple_comparison)

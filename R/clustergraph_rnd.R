@@ -110,10 +110,15 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
       threshold = as.numeric(matrix(threshold,nrow=length(multiple_comparison)))
     }
 
-    if(is.null(dimnames(signal)[[3]])){
+    if(is.null(dnames[[3]])){
       warning("Response and graph must match vertices and 3rd dimension.")
     }else{
-      graph = permute.vertices(graph, match(get.vertex.attribute(graph,"name"),dimnames(signal))[[3]])
+      perm = match(get.vertex.attribute(graph,"name"),dnames[[3]])
+      if( !isTRUE(all.equal(perm,1:length(perm)))){
+        warning("reorder graph vertices to match signal")
+          graph = permute.vertices(graph,perm )
+      }
+
     }
 
 

@@ -116,6 +116,9 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
       perm = match(get.vertex.attribute(graph,"name"),dnames[[3]])
       if( !isTRUE(all.equal(perm,1:length(perm)))){
         warning("reorder graph vertices to match signal")
+        if(sum(is.na(perm))>=1){
+          stop("Names of graph and electrodes must match.")
+        }
           graph = permute.vertices(graph,perm )
       }
 

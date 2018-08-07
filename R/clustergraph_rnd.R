@@ -125,11 +125,12 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
 
     }
 
-    cat("Computing Effect:")
+    cat("Computing Effect:\n")
 
 
     for(i in effect){
       cat(i)
+      cat("\n")
       args$i = i
       ###initialisze output
       distribution = funP(args = args)

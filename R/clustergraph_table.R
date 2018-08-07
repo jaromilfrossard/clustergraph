@@ -1,5 +1,4 @@
 clustergraph_table = function(x){
-  print(length(x))
   ct = lapply(1:length(x),function(i){
     effect = x[[i]]
     tab= data.frame(size = effect$maris_oostenveld$cluster$csize,

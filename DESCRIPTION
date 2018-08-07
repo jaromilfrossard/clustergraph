@@ -6,7 +6,6 @@ Authors@R: c(
   person("Frossard", "Jaromil", email = "jaromil.frossard@unige.ch",role = c("aut", "cre")),
   person("Renaud","Olivier",email="olivier.renaud@unige.ch",role=c("aut")))
 Description: Compute the cluster mass test for multiple signal.
-Depends: R (>= 3.4.1)
 License: GPL (>= 2)
 Imports: permuco,stats,Matrix,igraph
 Encoding: UTF-8

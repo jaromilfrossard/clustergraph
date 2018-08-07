@@ -17,6 +17,7 @@
 #'@param effect a number indicating the effect to test. Refer to the \code{assign} attribute of the \code{model.matrix} object. If \code{NULL} it will test all the effects.
 #'@param ... further arguments
 #'@importFrom stats update as.formula contr.sum model.frame contrasts<- model.matrix qf
+#'@importFrom igraph permute.vertices
 #'@import permuco
 #'@export
 clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, graph, effect = NULL, coding_sum = T,
@@ -124,9 +125,11 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
 
     }
 
+    cat("Computing Effect:")
+
 
     for(i in effect){
-      print(i)
+      cat(i)
       args$i = i
       ###initialisze output
       distribution = funP(args = args)

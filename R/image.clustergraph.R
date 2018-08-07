@@ -49,9 +49,9 @@ image.clustergraph = function(x, effect = 1, main = NULL,ylab = "", xlab = "",..
   fvalue[is.na(pvalue)] = NA
 
   ## non significant time point in grey
-  nfvalue = fvalue
-  nfvalue[pvalue<0.05]=NA
-  nfvalue[pvalue>=0.05]=1
+  nsfvalue = fvalue
+  nsfvalue[pvalue<0.05]=NA
+  nsfvalue[pvalue>=0.05]=1
 
   ## plot only significant in color
   fvalue[pvalue>=0.05]=NA
@@ -62,10 +62,10 @@ image.clustergraph = function(x, effect = 1, main = NULL,ylab = "", xlab = "",..
 
   #rev matrix and plot
   fvalue = t(apply(fvalue, 2, rev))
-  nfvalue = t(apply(nfvalue, 2, rev))
+  nsfvalue = t(apply(nsfvalue, 2, rev))
 
-  image(1:nrow(fvalue),1:ncol(fvalue), nfvalue,yaxt="n",col="grey", xlab=xlab, main=main,ylab=ylab,...)
-  if(sum(!is.na(fvalue))!=0){image(fvalue,add=T)}
+  image(1:nrow(fvalue),1:ncol(fvalue), nsfvalue,yaxt="n",col="grey", xlab=xlab, main=main,ylab=ylab,...)
+  if(sum(!is.na(fvalue))!=0){image(1:nrow(fvalue),1:ncol(fvalue), fvalue,add=T)}
   box()
   axis(side=2,at = c(xlim[1]:xlim[2])[c(xlim[1]:xlim[2])%% 2 == 0],
        labels = rev(enames[c(xlim[1]:xlim[2])%% 2 == 0]))

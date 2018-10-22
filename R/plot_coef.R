@@ -9,7 +9,7 @@
 #' @export
 plot_coef = function(object,...){UseMethod("plot_coef")}
 
-#' @export
+#' @exportMethod
 plot_coef.formula = function(object, data, signal, effect = NULL, coding_sum = T,...){
   formula <- object
 

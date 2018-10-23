@@ -14,6 +14,7 @@ plot_coef = function(object,...){UseMethod("plot_coef")}
 plot_coef.formula = function(object, data, signal, effect = NULL, coding_sum = T,...){
   formula <- object
 
+
   terms <- terms(formula,special="Error",data=data)
   ind_error <- attr(terms, "specials")$Error
   error_term <- attr(terms, "variables")[[1 + ind_error]]
@@ -32,9 +33,13 @@ plot_coef.formula = function(object, data, signal, effect = NULL, coding_sum = T
 
   if(is.null(effect)){effect = attr(mm_f,"assign")[attr(mm_f,"assign")>0]}
 
+  effect_names = c("intercept",attr(terms,"term.labels"))[effect+1]
+
   lisftofxmat = lapply(effect,function(assigni){
     mm_f[,attr(mm_f,"assign")==assigni,drop=F]
   })
+
+  names(lisftofxmat) = effect_names
 
   plot_coef_listofx(signal, lisftofxmat)
 
@@ -58,7 +63,7 @@ plot_coef_listofx <- function(y, listofx){
     dimci = dim(listof_coef[[i]])
     coefi = aperm(listof_coef[[i]],c(2,1,3))
     coefi = matrix(coefi,nrow=dimci[2],ncol=prod(dimci[-2]))
-    ts.plot(coefi)
+    ts.plot(coefi,main=names(listofx)[i])
 
   }
   return(listof_coef)

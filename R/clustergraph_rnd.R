@@ -1,4 +1,4 @@
-#'Computer cluster test based on multiple signal.
+#'Computer clustermass test based on multiple signal.
 #'
 #'@description compute the maris oostenveld permutation test of on multiple signal. Used for full scalp EEG analysis.
 #'

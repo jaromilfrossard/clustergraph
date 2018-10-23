@@ -2,7 +2,7 @@
 % Please edit documentation in R/clustergraph_rnd.R
 \name{clustergraph_rnd}
 \alias{clustergraph_rnd}
-\title{Computer cluster test based on multiple signal.}
+\title{Computer clustermass test based on multiple signal.}
 \usage{
 clustergraph_rnd(formula, data, signal, method, threshold, np, P, graph,
   effect = NULL, coding_sum = T, aggr_FUN = sum,

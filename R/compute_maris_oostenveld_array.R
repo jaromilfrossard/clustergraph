@@ -32,7 +32,7 @@ compute_maris_oostenveld_array = function(distribution, threshold,aggr_FUN, grap
     aggr_FUN(get.vertex.attribute(g,name = "statistic", index = names(cc$membership)[cc$membership == i]))
   })
   pvalue = sapply(mass_statistic, function(mi) permuco:::compute_pvalue(stat = mi,
-                                                                        distribution = mass_distribution, laterality = "right"))
+                                                                        distribution = mass_distribution, alternative  = "greater"))
 
   cc$mass_statistic = mass_statistic
   cc$pvalue = pvalue

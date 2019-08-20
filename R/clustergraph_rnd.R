@@ -160,7 +160,7 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
       multiple_comparison[[i]]$uncorrected = list(statistic = t(distribution[1,,]),pvalue = pvalue)
       if(return_distribution){multiple_comparison[[i]]$uncorrected$distribution = distribution}
       multiple_comparison[[i]][[2]] =
-        compute_maris_oostenveld_array(distribution = distribution,
+        funMultComp(distribution = distribution,
                                        threshold = threshold[i], aggr_FUN = aggr_FUN, graph = graph)
       names(multiple_comparison[[i]])[2] = multcomp
     }

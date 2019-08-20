@@ -30,7 +30,7 @@ compute_troendle_array = function(distribution,graph,alpha = 0.05, ...){
   p_corrected = cummax(p_corrected)[order(order_test)]
   p_corrected = matrix(p_corrected,nrow= dim(distribution)[2],ncol= dim(distribution)[3])
   ### in graph
-  graph = clustergraph:::full_graph(graph, t = dim(distribution)[2])
+  graph = full_graph(graph, t = dim(distribution)[2])
 
   graph = set_vertex_attr(graph, name = "statistic",
                           value = as.numeric(t(distribution[1, , ])))

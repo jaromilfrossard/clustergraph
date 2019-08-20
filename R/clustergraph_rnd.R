@@ -36,14 +36,14 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
   switch(multcomp,
          "maris_oostenveld" = {
            funMultComp = function(distribution,threshold,aggr_FUN,graph){
-             clustergraph:::compute_maris_oostenveld_array(distribution = distribution,threshold = threshold,
+             compute_maris_oostenveld_array(distribution = distribution,threshold = threshold,
                                                            aggr_FUN = aggr_FUN,graph = graph)}},
          "troendle" = {funMultComp = function(distribution,threshold,aggr_FUN,graph){
            compute_troendle_array(distribution = distribution,graph = graph, alpha = 0.05, ...)
          }},{
            multcomp = "maris_oostenveld"
            funMultComp = function(distribution,threshold,aggr_FUN,graph){
-             clustergraph:::compute_maris_oostenveld_array(distribution = distribution,threshold = threshold,
+             compute_maris_oostenveld_array(distribution = distribution,threshold = threshold,
                                                            aggr_FUN = aggr_FUN,graph = graph)}
          })
 

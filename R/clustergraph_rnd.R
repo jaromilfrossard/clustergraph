@@ -33,6 +33,20 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
         }},
       {funP=function(...){eval(parse(text=paste("graph_fisher_",method,"_rnd(...)",sep="",collpase="")))}})
 
+  switch(multcomp,
+         "maris_oostenveld" = {
+           funMultComp = function(distribution,threshold,aggr_FUN,graph){
+             clustergraph:::compute_maris_oostenveld_array(distribution = distribution,threshold = threshold,
+                                                           aggr_FUN = aggr_FUN,graph = graph)}},
+         "troendle" = {funMultComp = function(distribution,threshold,aggr_FUN,graph){
+           compute_troendle_array(distribution = distribution,graph = graph, alpha = 0.05, ...)
+         }},{
+           multcomp = "maris_oostenveld"
+           funMultComp = function(distribution,threshold,aggr_FUN,graph){
+             clustergraph:::compute_maris_oostenveld_array(distribution = distribution,threshold = threshold,
+                                                           aggr_FUN = aggr_FUN,graph = graph)}
+         })
+
     if(class(signal) != "array"){
       stop("convert signal into a 3 dimentinal array")
     }
@@ -141,12 +155,16 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
       pvalue = matrix(pvalue,nrow = dim_y[2],ncol = dim_y[3])
       dim(distribution) = c(np,dim_y[2],dim_y[3])
       dim(signal) = dim_y
-      multiple_comparison[[i]]=list()
-      multiple_comparison[[i]]$uncorrected = list(statistic = t(distribution[1,,]),pvalue = pvalue)
-      if(return_distribution){multiple_comparison[[1]]$uncorrected$distribution = distribution}
-      multiple_comparison[[i]]$maris_oostenveld =
+      mci = which(effect==i)
+
+
+      multiple_comparison[[mci]]=list()
+      multiple_comparison[[mci]]$uncorrected = list(statistic = t(distribution[1,,]),pvalue = pvalue)
+      if(return_distribution){multiple_comparison[[mci]]$uncorrected$distribution = distribution}
+      multiple_comparison[[mci]][[2]] =
         compute_maris_oostenveld_array(distribution = distribution,
                                        threshold = threshold[i], aggr_FUN = aggr_FUN, graph = graph)
+      names(multiple_comparison[[mci]])[2] = multcomp
     }
 
 

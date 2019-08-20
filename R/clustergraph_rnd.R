@@ -155,16 +155,14 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
       pvalue = matrix(pvalue,nrow = dim_y[2],ncol = dim_y[3])
       dim(distribution) = c(np,dim_y[2],dim_y[3])
       dim(signal) = dim_y
-      mci = which(effect==i)
 
-
-      multiple_comparison[[mci]]=list()
-      multiple_comparison[[mci]]$uncorrected = list(statistic = t(distribution[1,,]),pvalue = pvalue)
-      if(return_distribution){multiple_comparison[[mci]]$uncorrected$distribution = distribution}
-      multiple_comparison[[mci]][[2]] =
+      multiple_comparison[[i]]=list()
+      multiple_comparison[[i]]$uncorrected = list(statistic = t(distribution[1,,]),pvalue = pvalue)
+      if(return_distribution){multiple_comparison[[i]]$uncorrected$distribution = distribution}
+      multiple_comparison[[i]][[2]] =
         compute_maris_oostenveld_array(distribution = distribution,
                                        threshold = threshold[i], aggr_FUN = aggr_FUN, graph = graph)
-      names(multiple_comparison[[mci]])[2] = multcomp
+      names(multiple_comparison[[i]])[2] = multcomp
     }
 
 

@@ -1,10 +1,10 @@
 clustergraph_table = function(x){
   ct = lapply(1:length(x),function(i){
     effect = x[[i]]
-    tab= data.frame(size = effect$maris_oostenveld$cluster$csize,
-                    mass = effect$maris_oostenveld$cluster$mass_statistic,
-                    pvalue = effect$maris_oostenveld$cluster$pvalue)
-    attr(tab,"threshold") = effect$maris_oostenveld$threshold
+    tab= data.frame(size = effect[[2]]$cluster$csize,
+                    mass = effect[[2]]$cluster$mass_statistic,
+                    pvalue = effect[[2]]$cluster$pvalue)
+    attr(tab,"threshold") = effect[[2]]$threshold
     attr(tab,"effect_name") = names(x)[i]
     class(tab) = append("cluster_table",class(tab))
     tab

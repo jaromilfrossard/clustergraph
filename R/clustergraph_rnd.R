@@ -112,8 +112,8 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
 
 
     multiple_comparison <- list()
-    length(multiple_comparison) <- max(effect)
-    names(multiple_comparison) <- attr(attr(mf_f, "terms"), "term.labels")[effect]
+    length(multiple_comparison) <- max(attr(mm_f,"assign"))
+    names(multiple_comparison) <- attr(attr(mf_f, "terms"), "term.labels")
 
 
     ##adjust multiple threshold
@@ -166,7 +166,7 @@ clustergraph_rnd <- function(formula, data, signal, method, threshold, np, P, gr
     }
 
 
-    dimnames(signal)[effect] = dnames
+    dimnames(signal) = dnames
     attr(mf,"terms")=NULL
 
 

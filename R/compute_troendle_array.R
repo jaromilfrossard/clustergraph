@@ -5,6 +5,8 @@
 # @param distribution An 3d array representing the null distribution of multiple signal. The first dimension is the permutations, the second the time points, the third is the elecrodes.
 # @param graph A igraph object representing the adjacency of electrod in a scalp.
 # @return graph A igraph object with vertices attributes statistic and pvalue. data,A data frame containing the vraible elecrod, time, statistic, pvalue. cluster the result of the connected componant search on the observed graph enhanced with the mass and pvalue of the cluster. Distribution the cluster mass null distribution.
+#' @importFrom utils txtProgressBar setTxtProgressBar
+#' @importFrom grDevices gray
 compute_troendle_array = function(distribution,graph,alpha = 0.05, ...){
   distribution_mat = matrix(distribution,nrow=dim(distribution)[1],
                             ncol=prod(dim(distribution)[-1]))
@@ -46,6 +48,11 @@ compute_troendle_array = function(distribution,graph,alpha = 0.05, ...){
   g = delete_vertices(graph, V(graph)[get.vertex.attribute(graph,
                                                            "pvalue") >= alpha])
   cc = clusters(g, mode = "weak")
+  cc$mass_statistic = rep(NA,length(cc$csize))
+  cc$pvalue = rep(paste0("<",alpha),length(cc$csize))
+
+
+
 
   graph = set.vertex.attribute(graph, "custer_id",
                                value = NA)

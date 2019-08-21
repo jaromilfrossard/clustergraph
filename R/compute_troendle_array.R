@@ -12,7 +12,7 @@ compute_troendle_array = function(distribution,graph,alpha = 0.05, ...){
                             ncol=prod(dim(distribution)[-1]))
 
   distribution_rank = apply(-distribution_mat,2,function(coli){
-    ceiling(rank(coli))
+    rank(coli,ties.method = "max")
   })
   rank_uncorr <- rank(distribution_rank[1,],ties.method = "min")
   order_test = integer(0)

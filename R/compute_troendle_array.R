@@ -17,7 +17,12 @@ compute_troendle_array = function(distribution,graph,alpha = 0.05, ...){
   p_corrected <- numeric(length = 0)
 
   urank = sort(unique(rank_uncorr))[1]
+  ntest = length(sort(unique(rank_uncorr)))
+  pb = txtProgressBar(min = 1, max = ntest, style = 3)
+  testi = 0
   for(urank in sort(unique(rank_uncorr))){
+    testi=testi+1
+    setTxtProgressBar(pb, testi)
     which_test <- which(urank==rank_uncorr)
     order_test <- c(order_test,which_test)
     pvali <- distribution_rank[,which(urank<=rank_uncorr),drop=F]

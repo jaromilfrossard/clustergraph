@@ -10,7 +10,7 @@ image_maris_oostenveld = function(x, effect = 1, main = NULL,ylab = "", xlab = "
 
 
   ## order from electrode position
-  order_electrode = order(vertex_attr(x$graph,"x"),-vertex_attr(x$graph,"y"))
+  order_electrode = order(-vertex_attr(x$graph,"y"),vertex_attr(x$graph,"x"))
   enames = vertex_attr(x$graph,"name")[order_electrode]
 
   ## non corrected fvalue

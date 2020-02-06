@@ -4,8 +4,7 @@
 \alias{image.clustergraph}
 \title{Plot a statistical map of one effect.}
 \usage{
-\method{image}{clustergraph}(x, effect = 1, main = NULL, ylab = "",
-  xlab = "", ...)
+\method{image}{clustergraph}(x, effect = 1, main = NULL, ylab = "", xlab = "", ...)
 }
 \arguments{
 \item{x}{a clustergraph model.}

@@ -27,15 +27,22 @@ compute_maris_oostenveld_array = function(distribution, threshold,aggr_FUN, grap
   graph = set_vertex_attr(graph, name="statistic", value = as.numeric(t(distribution[1,,])))
   g = delete_vertices(graph,V(graph)[get.vertex.attribute(graph, "statistic")<=threshold])
   cc = clusters(g,mode ="weak")
-
+  if(length(cc$membership)>0){
   mass_statistic = sapply(1:max(cc$membership), function(i) {
     aggr_FUN(get.vertex.attribute(g,name = "statistic", index = names(cc$membership)[cc$membership == i]))
   })
   pvalue = sapply(mass_statistic, function(mi) permuco:::compute_pvalue(stat = mi,
                                                                         distribution = mass_distribution, alternative  = "greater"))
-
+  }else{
+    mass_statistic = numeric()
+    pvalue = numeric()
+  }
   cc$mass_statistic = mass_statistic
   cc$pvalue = pvalue
+
+  graph = set.vertex.attribute(graph, "pvalue",value= 1)
+  graph = set.vertex.attribute(graph, "custer_id",value=0)
+  graph = set.vertex.attribute(graph, "mass_statistic",value=NA)
 
 
   graph = set.vertex.attribute(graph,"pvalue", index = names(cc$membership),value = cc$pvalue[cc$membership])

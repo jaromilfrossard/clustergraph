@@ -4,9 +4,22 @@
 \alias{clustergraph_rnd}
 \title{Computer clustermass test based on multiple signal.}
 \usage{
-clustergraph_rnd(formula, data, signal, method, threshold, np, P, graph,
-  effect = NULL, coding_sum = T, aggr_FUN = sum,
-  multcomp = "maris_oostenveld", return_distribution, ...)
+clustergraph_rnd(
+  formula,
+  data,
+  signal,
+  method,
+  threshold,
+  np,
+  P,
+  graph,
+  effect = NULL,
+  coding_sum = T,
+  aggr_FUN = sum,
+  multcomp = "maris_oostenveld",
+  return_distribution,
+  ...
+)
 }
 \arguments{
 \item{formula}{the formula of the model}

@@ -1,8 +1,10 @@
 # `clustergraph`
 
-This package is an add-on to permuco to compute cluster-mass test on space-time data.
+The developpement of clustergraph has stopped. Its functionality is in permuco4brain:
 
-The package is still in developpement and will change.
+https://github.com/jaromilfrossard/permuco4brain.
+
+This package is an add-on to permuco to compute cluster-mass test on space-time data.
 
 If you want to use it now, a tutorial of the developpement version is available here:
 
